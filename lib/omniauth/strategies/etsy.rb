@@ -21,12 +21,19 @@ module OmniAuth
         strategy.options[:authorize_params] = etsy_auth_params
       }
 
-      uid { URI.parse(options[:client_options][:site]).host }
+      uid { access_token.token.split('.').first }
       credentials { user_credentials }
 
       def setup_phase
         options.scope = preprocessed_scopes
         options.client_options.merge!(urls)
+        super
+      end
+
+      def build_access_token
+        options.token_params['grant_type'] = 'authorization_code'
+        options.token_params['client_id'] = options[:client_id]
+        options.token_params.merge!(:headers => {'Authorization' => nil})
         super
       end
 
