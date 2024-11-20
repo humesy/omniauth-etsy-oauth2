@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
-  spec.add_dependency 'omniauth', '~> 1.9.1'
+  spec.add_dependency 'omniauth', '~> 2.1'
   spec.add_dependency 'omniauth-oauth2', '~> 1.4'
 
   spec.add_development_dependency 'rubocop-shopify', '~> 2.2.0'
